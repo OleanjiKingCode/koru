@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --primary: #5d3fd3;
+  --accent: #ffd700;
+  --bg: #f8f9fa;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #0f172a;
+}
+
+body {
+  @apply bg-[var(--bg)] text-[#0f172a] transition-colors duration-300;
+  font-family: var(--font-inter), ui-sans-serif, system-ui;
+}
+
+.dark body {
+  @apply text-slate-100;
+}
+
+a,
+button,
+.card {
+  @apply transition-all duration-300;
+}
+
+.glass-panel {
+  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.dark .glass-panel {
+  background: rgba(17, 24, 39, 0.7);
+  border-color: rgba(255, 255, 255, 0.1);
+}
