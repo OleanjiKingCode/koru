@@ -1,5 +1,3 @@
-import clsx from "clsx";
-
 interface KorunCardProps {
   view: "grid" | "list";
   name: string;
@@ -23,55 +21,51 @@ export default function KorunCard({
   tags,
   responseTime,
   trending,
-  onMessage
+  onMessage,
 }: KorunCardProps) {
-  const baseCard =
-    "card rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-[#f9f9ff] shadow-md transition-all duration-300 hover:-translate-y-[4px] hover:scale-[1.01] hover:shadow-lg dark:border-white/10 dark:from-[#0d1324] dark:to-[#0b1120]";
-  const avatar =
-    "flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F0EFFF] text-[#5D3FD3] text-lg font-bold shadow-inner ring-2 ring-primary/20";
-
   if (view === "list") {
     return (
-      <div className={clsx(baseCard, "flex items-center gap-4 p-4")}>
-        <div className={avatar}>{avatarLetter}</div>
-        <div className="flex-1 space-y-1">
-          <div className="flex flex-wrap items-center gap-2">
-            <p className="text-base font-semibold text-[#0f172a] dark:text-white">
+      <div className="flex items-center gap-4 rounded-xl border border-gray-100 bg-white p-4 dark:border-white/10 dark:bg-[#111827]">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F0EFFF] text-base font-semibold text-[#5D3FD3]">
+          {avatarLetter}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <p className="font-medium text-[#0f172a] dark:text-white truncate">
               {name}
             </p>
             {trending && (
-              <span className="flex items-center gap-1 rounded-full bg-accent/20 px-2 py-1 text-[10px] font-bold uppercase text-[#3b2c91]">
-                <span className="animate-pulse">🔥</span> Trending
+              <span className="shrink-0 rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-medium text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">
+                🔥 Trending
               </span>
             )}
           </div>
-          <p className="text-sm text-gray-600 dark:text-gray-300">{title}</p>
-          <p className="text-xs text-gray-500 line-clamp-2 dark:text-gray-300">
+          <p className="text-sm text-gray-500 dark:text-gray-400">{title}</p>
+          <p className="mt-1 text-xs text-gray-400 line-clamp-1 dark:text-gray-500">
             {description}
           </p>
-          <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold text-[#0f172a] dark:text-gray-200">
-            <span className="rounded-full bg-primary/10 px-2 py-1 text-primary">
+          <div className="mt-2 flex flex-wrap items-center gap-1.5">
+            <span className="rounded-full bg-[#5D3FD3]/10 px-2 py-0.5 text-[10px] font-medium text-[#5D3FD3]">
               {responseTime}
             </span>
-            {tags.map((tag) => (
+            {tags.slice(0, 2).map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-gray-100 px-2 py-1 text-[#0f172a] dark:bg-white/10 dark:text-white"
+                className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-600 dark:bg-white/5 dark:text-gray-400"
               >
                 {tag}
               </span>
             ))}
           </div>
         </div>
-        <div className="flex flex-col items-end gap-2">
-          <p className="text-sm font-semibold text-[#0f172a] dark:text-white">
-            From ${price} / msg
+        <div className="flex flex-col items-end gap-2 shrink-0">
+          <p className="text-sm font-medium text-[#0f172a] dark:text-white">
+            ${price}
           </p>
           <button
             onClick={onMessage}
-            className="relative overflow-hidden rounded-full bg-[#FFD700] px-5 py-2 text-xs font-semibold text-black shadow-lg transition-all duration-300 hover:-translate-y-[1px]"
+            className="rounded-full bg-[#5D3FD3] px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#4c33b3]"
           >
-            <span className="absolute inset-0 translate-x-[-120%] bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-80 transition-all duration-700 hover:translate-x-[120%]" />
             Message
           </button>
         </div>
@@ -80,53 +74,56 @@ export default function KorunCard({
   }
 
   return (
-    <div className={clsx(baseCard, "flex h-full flex-col justify-between p-6")}>
-      <div className="space-y-4 animate-fade-up">
-        <div className="flex items-start gap-4">
-          <div className={avatar}>{avatarLetter}</div>
-          <div className="flex-1 space-y-1">
-            <div className="flex items-center gap-2">
-              <h3 className="text-lg font-semibold text-[#0f172a] dark:text-white">
-                {name}
-              </h3>
-              {trending && (
-                <span className="flex items-center gap-1 rounded-full bg-accent/20 px-2 py-1 text-[10px] font-bold uppercase text-[#3b2c91]">
-                  <span className="animate-pulse">🔥</span> Trending
-                </span>
-              )}
-            </div>
-            <p className="text-sm text-gray-600 dark:text-gray-300">{title}</p>
-            <p className="text-sm text-gray-500 line-clamp-2 dark:text-gray-300">
-              {description}
-            </p>
+    <div className="flex h-full flex-col rounded-xl border border-gray-100 bg-white p-5 dark:border-white/10 dark:bg-[#111827]">
+      <div className="flex items-start gap-3">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F0EFFF] text-base font-semibold text-[#5D3FD3]">
+          {avatarLetter}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <h3 className="font-medium text-[#0f172a] dark:text-white truncate">
+              {name}
+            </h3>
+            {trending && (
+              <span className="shrink-0 rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-medium text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">
+                🔥
+              </span>
+            )}
           </div>
+          <p className="text-sm text-gray-500 dark:text-gray-400">{title}</p>
         </div>
-
-        <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#0f172a] dark:text-gray-200">
-          <span className="rounded-full bg-primary/10 px-3 py-1 text-primary">
-            {responseTime}
-          </span>
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full bg-gray-100 px-3 py-1 text-[#0f172a] dark:bg-white/10 dark:text-white"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
       </div>
 
-      <div className="mt-5 flex items-center justify-between border-t border-gray-100 pt-4 dark:border-white/10">
-        <div className="text-sm font-semibold text-[#0f172a] dark:text-white">
-          From ${price} / msg
+      <p className="mt-3 text-sm text-gray-500 line-clamp-2 dark:text-gray-400">
+        {description}
+      </p>
+
+      <div className="mt-3 flex flex-wrap items-center gap-1.5">
+        <span className="rounded-full bg-[#5D3FD3]/10 px-2.5 py-1 text-[11px] font-medium text-[#5D3FD3]">
+          {responseTime}
+        </span>
+        {tags.map((tag) => (
+          <span
+            key={tag}
+            className="rounded-full bg-gray-100 px-2.5 py-1 text-[11px] text-gray-600 dark:bg-white/5 dark:text-gray-400"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-auto pt-4 flex items-center justify-between border-t border-gray-100 dark:border-white/5">
+        <div className="text-sm">
+          <span className="text-gray-400 dark:text-gray-500">From </span>
+          <span className="font-medium text-[#0f172a] dark:text-white">
+            ${price}
+          </span>
+          <span className="text-gray-400 dark:text-gray-500"> / msg</span>
         </div>
         <button
           onClick={onMessage}
-          className="group relative overflow-hidden rounded-full bg-[#FFD700] px-5 py-2 text-xs font-semibold text-black shadow-lg transition-all duration-300 hover:-translate-y-[1px]"
+          className="rounded-full bg-[#5D3FD3] px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#4c33b3]"
         >
-          <span className="absolute inset-0 translate-x-[-120%] bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-80 transition-all duration-700 group-hover:translate-x-[120%]" />
           Message
         </button>
       </div>

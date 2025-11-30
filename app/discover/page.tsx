@@ -213,50 +213,50 @@ export default function DiscoverPage() {
               Curated operators, investors, and creators who commit to replying.
             </p>
             </div>
-            <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
-              <div>Showing {filtered.length} Koruns</div>
-              <div className="flex items-center gap-1 rounded-full bg-[#f7f7fb] px-2 py-1 text-xs font-semibold shadow-sm ring-1 ring-gray-200 dark:bg-white/5 dark:text-white dark:ring-white/10">
+            <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
+              <span>{filtered.length} Koruns</span>
+              <div className="flex items-center gap-1 rounded-lg bg-gray-100 p-1 dark:bg-white/5">
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`rounded-full px-2 py-1 transition-all duration-300 ${
+                  className={`rounded-md p-1.5 transition-colors ${
                     viewMode === "grid"
-                      ? "bg-primary text-white"
-                      : "text-[#0f172a] dark:text-white"
+                      ? "bg-white text-[#5D3FD3] dark:bg-[#111827]"
+                      : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
                   }`}
                 >
-                  <span className="flex h-4 w-4 flex-wrap gap-[1px]">
-                    <span className="h-[7px] w-[7px] rounded-sm bg-current" />
-                    <span className="h-[7px] w-[7px] rounded-sm bg-current" />
-                    <span className="h-[7px] w-[7px] rounded-sm bg-current" />
-                    <span className="h-[7px] w-[7px] rounded-sm bg-current" />
-                  </span>
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 16 16">
+                    <rect x="1" y="1" width="6" height="6" rx="1" />
+                    <rect x="9" y="1" width="6" height="6" rx="1" />
+                    <rect x="1" y="9" width="6" height="6" rx="1" />
+                    <rect x="9" y="9" width="6" height="6" rx="1" />
+                  </svg>
                 </button>
                 <button
                   onClick={() => setViewMode("list")}
-                  className={`rounded-full px-2 py-1 transition-all duration-300 ${
+                  className={`rounded-md p-1.5 transition-colors ${
                     viewMode === "list"
-                      ? "bg-primary text-white"
-                      : "text-[#0f172a] dark:text-white"
+                      ? "bg-white text-[#5D3FD3] dark:bg-[#111827]"
+                      : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
                   }`}
                 >
-                  <span className="flex h-4 w-4 flex-col justify-between">
-                    <span className="h-[2px] w-full rounded-full bg-current" />
-                    <span className="h-[2px] w-full rounded-full bg-current" />
-                    <span className="h-[2px] w-full rounded-full bg-current" />
-                  </span>
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 16 16">
+                    <rect x="1" y="2" width="14" height="2" rx="0.5" />
+                    <rect x="1" y="7" width="14" height="2" rx="0.5" />
+                    <rect x="1" y="12" width="14" height="2" rx="0.5" />
+                  </svg>
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="rounded-3xl border border-gray-200 bg-white p-4 shadow-card transition hover:shadow-xl dark:border-white/10 dark:bg-[#0f172a]">
+        <div className="rounded-xl border border-gray-100 bg-white p-4 dark:border-white/10 dark:bg-[#111827]">
           <button
             onClick={() => setFiltersOpen((v) => !v)}
-            className="flex w-full items-center justify-between rounded-2xl bg-[#f8f9fb] px-4 py-3 text-sm font-semibold text-[#0f172a] shadow-inner hover:opacity-90 dark:bg-white/5 dark:text-white sm:hidden"
+            className="flex w-full items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5 text-sm font-medium text-[#0f172a] dark:bg-white/5 dark:text-white sm:hidden"
           >
             <span>Filters</span>
-            <span>{filtersOpen ? "−" : "+"}</span>
+            <span className="text-gray-400">{filtersOpen ? "−" : "+"}</span>
           </button>
           <div className={`${filtersOpen ? "mt-4 block" : "hidden sm:block"}`}>
             <div className="flex flex-wrap gap-2">
@@ -264,10 +264,10 @@ export default function DiscoverPage() {
                 <button
                   key={tag.value}
                   onClick={() => toggleTag(tag.value)}
-                  className={`flex items-center gap-1 rounded-full px-4 py-2 text-xs font-semibold ${
+                  className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                     selectedTags.includes(tag.value)
-                      ? "bg-primary text-white shadow-card"
-                      : "bg-[#f7f7fb] text-[#0f172a] hover:bg-primary/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
+                      ? "bg-[#5D3FD3] text-white"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-white/5 dark:text-gray-300 dark:hover:bg-white/10"
                   }`}
                 >
                   {tag.label}
@@ -275,8 +275,8 @@ export default function DiscoverPage() {
               ))}
             </div>
             <div className="mt-4 flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-3 rounded-2xl border border-gray-200 bg-gradient-to-r from-white via-[#f8f9ff] to-white px-4 py-3 text-sm text-gray-700 shadow-inner dark:border-white/10 dark:from-[#0f172a] dark:via-[#0f172a] dark:to-[#0f172a] dark:text-gray-100">
-                <span className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-300">
+              <div className="flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50 px-3 py-2 dark:border-white/10 dark:bg-white/5">
+                <span className="text-xs text-gray-500 dark:text-gray-400">
                   💰 Price
                 </span>
                 <div className="flex items-center gap-2">
@@ -291,7 +291,7 @@ export default function DiscoverPage() {
                         min: Math.min(Number(e.target.value), prev.max - 5)
                       }))
                     }
-                    className="accent-primary [accent-color:#5D3FD3]"
+                    className="w-20 accent-[#5D3FD3]"
                   />
                   <input
                     type="range"
@@ -304,21 +304,21 @@ export default function DiscoverPage() {
                         max: Math.max(Number(e.target.value), prev.min + 5)
                       }))
                     }
-                    className="accent-primary [accent-color:#5D3FD3]"
+                    className="w-20 accent-[#5D3FD3]"
                   />
                 </div>
-                <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-[#0f172a] shadow-sm ring-1 ring-gray-200 dark:bg-[#0f172a] dark:text-white dark:ring-white/10">
+                <span className="rounded-md bg-white px-2 py-1 text-xs font-medium text-[#0f172a] dark:bg-[#111827] dark:text-white">
                   ${priceRange.min} - ${priceRange.max}
                 </span>
               </div>
-              <div className="flex items-center gap-2 rounded-full bg-[#f7f7fb] px-3 py-2 text-sm shadow-sm ring-1 ring-gray-200 dark:bg-white/5 dark:text-white dark:ring-white/10">
-                <span className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-300">
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-gray-500 dark:text-gray-400">
                   ⚡ Response
                 </span>
                 <select
                   value={urgencyFilter}
                   onChange={(e) => setUrgencyFilter(e.target.value)}
-                  className="rounded-full border border-gray-200 bg-white px-3 py-2 text-sm text-[#0f172a] shadow-sm focus:border-primary focus:ring-primary dark:border-white/10 dark:bg-[#0f172a] dark:text-white"
+                  className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-[#0f172a] focus:border-[#5D3FD3] focus:outline-none focus:ring-1 focus:ring-[#5D3FD3] dark:border-white/10 dark:bg-[#111827] dark:text-white"
                 >
                   {urgencyOptions.map((opt) => (
                     <option key={opt}>{opt}</option>
