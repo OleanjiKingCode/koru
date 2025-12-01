@@ -46,10 +46,10 @@ export default function HelpFinderPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-semibold text-primary">HelpFinder</p>
-          <h1 className="text-3xl font-semibold text-[#0f172a] dark:text-white">
+          <p className="text-xs font-semibold text-[#5D3FD3] sm:text-sm">HelpFinder</p>
+          <h1 className="text-2xl font-semibold text-[#0f172a] dark:text-white sm:text-3xl">
             Describe your problem
           </h1>
           <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -58,13 +58,13 @@ export default function HelpFinderPage() {
         </div>
         <Link
           href="/discover"
-          className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-card hover:-translate-y-[1px]"
+          className="w-full rounded-full bg-[#5D3FD3] px-4 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-[#4c33b3] sm:w-auto"
         >
           View all
         </Link>
       </div>
 
-      <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-[#0f172a]">
+      <div className="rounded-xl border border-gray-100 bg-white p-4 dark:border-white/10 dark:bg-[#111827] sm:rounded-2xl sm:p-6">
         <label className="text-sm font-semibold text-[#0f172a] dark:text-white">
           What do you need help with?
         </label>
@@ -73,9 +73,9 @@ export default function HelpFinderPage() {
           onChange={(e) => setProblem(e.target.value)}
           rows={3}
           placeholder="e.g., we need to improve onboarding activation for our B2B SaaS."
-          className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-[#0f172a] shadow-inner focus:border-primary focus:ring-primary dark:border-white/10 dark:bg-[#111827] dark:text-white"
+          className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-[#0f172a] focus:border-[#5D3FD3] focus:outline-none focus:ring-1 focus:ring-[#5D3FD3] dark:border-white/10 dark:bg-[#0f172a] dark:text-white"
         />
-        <p className="mt-2 text-xs text-gray-500 dark:text-gray-300">
+        <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
           Smart suggestions use mock logic only. Message to start a real conversation.
         </p>
       </div>
@@ -84,31 +84,30 @@ export default function HelpFinderPage() {
         {matches.map((m) => (
           <div
             key={m.id}
-            className="card rounded-2xl border border-primary/20 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-card dark:border-white/10 dark:bg-[#0f172a]"
+            className="rounded-xl border border-gray-100 bg-white p-4 dark:border-white/10 dark:bg-[#111827] sm:p-5"
           >
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <p className="text-lg font-semibold text-[#0f172a] dark:text-white">
+                <p className="font-semibold text-[#0f172a] dark:text-white sm:text-lg">
                   {m.name}
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-300">{m.title}</p>
-                <p className="text-sm text-gray-500 dark:text-gray-200">
+                <p className="text-sm text-gray-500 dark:text-gray-400">{m.title}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500">
                   Focus: {m.focus}
                 </p>
               </div>
-              <span className="rounded-full bg-accent/20 px-3 py-1 text-xs font-semibold text-[#3b2c91]">
+              <span className="self-start rounded-full bg-[#5D3FD3]/10 px-3 py-1 text-xs font-semibold text-[#5D3FD3]">
                 {Math.round(m.match * 100)}% match
               </span>
             </div>
-            <div className="mt-4 flex items-center gap-2">
+            <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center">
               <Link
                 href="/discover"
-                className="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white shadow-card hover:-translate-y-[1px]"
+                className="rounded-full bg-[#5D3FD3] px-4 py-2 text-center text-xs font-semibold text-white transition-colors hover:bg-[#4c33b3]"
               >
                 View profile
               </Link>
-              <button className="group relative overflow-hidden rounded-full border border-accent px-4 py-2 text-xs font-semibold text-[#3b2c91]">
-                <span className="absolute inset-0 translate-x-[-120%] bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-80 transition-all duration-700 group-hover:translate-x-[120%]" />
+              <button className="rounded-full border border-[#5D3FD3]/30 px-4 py-2 text-xs font-semibold text-[#5D3FD3] transition-colors hover:bg-[#5D3FD3]/5">
                 Message
               </button>
             </div>

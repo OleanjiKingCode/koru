@@ -25,18 +25,33 @@ export default function KorunCard({
 }: KorunCardProps) {
   if (view === "list") {
     return (
-      <div className="flex items-center gap-4 rounded-xl border border-gray-100 bg-white p-4 dark:border-white/10 dark:bg-[#111827]">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F0EFFF] text-base font-semibold text-[#5D3FD3]">
-          {avatarLetter}
+      <div className="flex flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 dark:border-white/10 dark:bg-[#111827] sm:flex-row sm:items-center sm:gap-4">
+        <div className="flex items-center gap-3 sm:shrink-0">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F0EFFF] text-sm font-semibold text-[#5D3FD3] sm:h-11 sm:w-11 sm:text-base">
+            {avatarLetter}
+          </div>
+          <div className="sm:hidden">
+            <div className="flex items-center gap-2">
+              <p className="font-medium text-[#0f172a] dark:text-white">
+                {name}
+              </p>
+              {trending && (
+                <span className="shrink-0 rounded-full bg-amber-50 px-1.5 py-0.5 text-[9px] font-medium text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">
+                  Trending
+                </span>
+              )}
+            </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{title}</p>
+          </div>
         </div>
-        <div className="flex-1 min-w-0">
+        <div className="hidden flex-1 min-w-0 sm:block">
           <div className="flex items-center gap-2">
             <p className="font-medium text-[#0f172a] dark:text-white truncate">
               {name}
             </p>
             {trending && (
               <span className="shrink-0 rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-medium text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">
-                🔥 Trending
+                Trending
               </span>
             )}
           </div>
@@ -58,9 +73,13 @@ export default function KorunCard({
             ))}
           </div>
         </div>
-        <div className="flex flex-col items-end gap-2 shrink-0">
+        <div className="flex items-center justify-between border-t border-gray-100 pt-3 dark:border-white/5 sm:flex-col sm:items-end sm:gap-2 sm:border-0 sm:pt-0 sm:shrink-0">
           <p className="text-sm font-medium text-[#0f172a] dark:text-white">
             ${price}
+            <span className="text-gray-400 dark:text-gray-500 sm:hidden">
+              {" "}
+              / msg
+            </span>
           </p>
           <button
             onClick={onMessage}
@@ -74,46 +93,48 @@ export default function KorunCard({
   }
 
   return (
-    <div className="flex h-full flex-col rounded-xl border border-gray-100 bg-white p-5 dark:border-white/10 dark:bg-[#111827]">
+    <div className="flex h-full flex-col rounded-xl border border-gray-100 bg-white p-4 dark:border-white/10 dark:bg-[#111827] sm:p-5">
       <div className="flex items-start gap-3">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F0EFFF] text-base font-semibold text-[#5D3FD3]">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F0EFFF] text-sm font-semibold text-[#5D3FD3] sm:h-11 sm:w-11 sm:text-base">
           {avatarLetter}
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className="font-medium text-[#0f172a] dark:text-white truncate">
+            <h3 className="font-medium text-[#0f172a] dark:text-white truncate text-sm sm:text-base">
               {name}
             </h3>
             {trending && (
-              <span className="shrink-0 rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-medium text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">
+              <span className="shrink-0 rounded-full bg-amber-50 px-1.5 py-0.5 text-[9px] font-medium text-amber-600 dark:bg-amber-500/10 dark:text-amber-400 sm:px-2 sm:text-[10px]">
                 🔥
               </span>
             )}
           </div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">{title}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 sm:text-sm">
+            {title}
+          </p>
         </div>
       </div>
 
-      <p className="mt-3 text-sm text-gray-500 line-clamp-2 dark:text-gray-400">
+      <p className="mt-3 text-xs text-gray-500 line-clamp-2 dark:text-gray-400 sm:text-sm">
         {description}
       </p>
 
-      <div className="mt-3 flex flex-wrap items-center gap-1.5">
-        <span className="rounded-full bg-[#5D3FD3]/10 px-2.5 py-1 text-[11px] font-medium text-[#5D3FD3]">
+      <div className="mt-3 flex flex-wrap items-center gap-1">
+        <span className="rounded-full bg-[#5D3FD3]/10 px-2 py-0.5 text-[10px] font-medium text-[#5D3FD3] sm:px-2.5 sm:py-1 sm:text-[11px]">
           {responseTime}
         </span>
-        {tags.map((tag) => (
+        {tags.slice(0, 3).map((tag) => (
           <span
             key={tag}
-            className="rounded-full bg-gray-100 px-2.5 py-1 text-[11px] text-gray-600 dark:bg-white/5 dark:text-gray-400"
+            className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-600 dark:bg-white/5 dark:text-gray-400 sm:px-2.5 sm:py-1 sm:text-[11px]"
           >
             {tag}
           </span>
         ))}
       </div>
 
-      <div className="mt-auto pt-4 flex items-center justify-between border-t border-gray-100 dark:border-white/5">
-        <div className="text-sm">
+      <div className="mt-auto pt-3 flex items-center justify-between border-t border-gray-100 dark:border-white/5 sm:pt-4">
+        <div className="text-xs sm:text-sm">
           <span className="text-gray-400 dark:text-gray-500">From </span>
           <span className="font-medium text-[#0f172a] dark:text-white">
             ${price}
@@ -122,7 +143,7 @@ export default function KorunCard({
         </div>
         <button
           onClick={onMessage}
-          className="rounded-full bg-[#5D3FD3] px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#4c33b3]"
+          className="rounded-full bg-[#5D3FD3] px-3 py-1.5 text-[11px] font-medium text-white transition-colors hover:bg-[#4c33b3] sm:px-4 sm:text-xs"
         >
           Message
         </button>

@@ -201,20 +201,20 @@ export default function DiscoverPage() {
   };
 
   return (
-      <div className="space-y-8">
-        <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold text-primary">Discover</p>
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="flex flex-col gap-2 sm:gap-3">
+          <p className="text-xs font-semibold text-[#5D3FD3] sm:text-sm">Discover</p>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h1 className="text-3xl font-semibold text-[#0f172a] dark:text-white">
+              <h1 className="text-2xl font-semibold text-[#0f172a] dark:text-white sm:text-3xl">
               Explore Koruns
             </h1>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-sm text-gray-500 dark:text-gray-400 sm:text-base">
               Curated operators, investors, and creators who commit to replying.
             </p>
             </div>
-            <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
-              <span>{filtered.length} Koruns</span>
+            <div className="flex items-center justify-between sm:gap-3">
+              <span className="text-xs text-gray-500 dark:text-gray-400 sm:text-sm">{filtered.length} Koruns</span>
               <div className="flex items-center gap-1 rounded-lg bg-gray-100 p-1 dark:bg-white/5">
                 <button
                   onClick={() => setViewMode("grid")}
@@ -250,21 +250,23 @@ export default function DiscoverPage() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-gray-100 bg-white p-4 dark:border-white/10 dark:bg-[#111827]">
+        <div className="rounded-xl border border-gray-100 bg-white p-3 dark:border-white/10 dark:bg-[#111827] sm:p-4">
           <button
             onClick={() => setFiltersOpen((v) => !v)}
-            className="flex w-full items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5 text-sm font-medium text-[#0f172a] dark:bg-white/5 dark:text-white sm:hidden"
+            className="flex w-full items-center justify-between rounded-lg bg-gray-50 px-3 py-2 text-sm font-medium text-[#0f172a] dark:bg-white/5 dark:text-white sm:hidden"
           >
-            <span>Filters</span>
-            <span className="text-gray-400">{filtersOpen ? "−" : "+"}</span>
+            <span>Filters {selectedTags.length > 0 && `(${selectedTags.length})`}</span>
+            <svg className={`h-4 w-4 text-gray-400 transition-transform ${filtersOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
           </button>
-          <div className={`${filtersOpen ? "mt-4 block" : "hidden sm:block"}`}>
-            <div className="flex flex-wrap gap-2">
+          <div className={`${filtersOpen ? "mt-3 block sm:mt-0" : "hidden"} sm:block`}>
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {tagFilters.map((tag) => (
                 <button
                   key={tag.value}
                   onClick={() => toggleTag(tag.value)}
-                  className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                  className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors sm:px-3 sm:py-1.5 sm:text-xs ${
                     selectedTags.includes(tag.value)
                       ? "bg-[#5D3FD3] text-white"
                       : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-white/5 dark:text-gray-300 dark:hover:bg-white/10"
@@ -274,10 +276,10 @@ export default function DiscoverPage() {
                 </button>
               ))}
             </div>
-            <div className="mt-4 flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50 px-3 py-2 dark:border-white/10 dark:bg-white/5">
+            <div className="mt-3 flex flex-col gap-3 sm:mt-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+              <div className="flex flex-col gap-2 rounded-lg border border-gray-100 bg-gray-50 p-3 dark:border-white/10 dark:bg-white/5 sm:flex-row sm:items-center sm:gap-3 sm:px-3 sm:py-2">
                 <span className="text-xs text-gray-500 dark:text-gray-400">
-                  💰 Price
+                  💰 Price Range
                 </span>
                 <div className="flex items-center gap-2">
                   <input
@@ -291,7 +293,7 @@ export default function DiscoverPage() {
                         min: Math.min(Number(e.target.value), prev.max - 5)
                       }))
                     }
-                    className="w-20 accent-[#5D3FD3]"
+                    className="w-full flex-1 accent-[#5D3FD3] sm:w-20"
                   />
                   <input
                     type="range"
@@ -304,10 +306,10 @@ export default function DiscoverPage() {
                         max: Math.max(Number(e.target.value), prev.min + 5)
                       }))
                     }
-                    className="w-20 accent-[#5D3FD3]"
+                    className="w-full flex-1 accent-[#5D3FD3] sm:w-20"
                   />
                 </div>
-                <span className="rounded-md bg-white px-2 py-1 text-xs font-medium text-[#0f172a] dark:bg-[#111827] dark:text-white">
+                <span className="self-start rounded-md bg-white px-2 py-1 text-xs font-medium text-[#0f172a] dark:bg-[#111827] dark:text-white sm:self-auto">
                   ${priceRange.min} - ${priceRange.max}
                 </span>
               </div>
@@ -318,7 +320,7 @@ export default function DiscoverPage() {
                 <select
                   value={urgencyFilter}
                   onChange={(e) => setUrgencyFilter(e.target.value)}
-                  className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-[#0f172a] focus:border-[#5D3FD3] focus:outline-none focus:ring-1 focus:ring-[#5D3FD3] dark:border-white/10 dark:bg-[#111827] dark:text-white"
+                  className="flex-1 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-[#0f172a] focus:border-[#5D3FD3] focus:outline-none focus:ring-1 focus:ring-[#5D3FD3] dark:border-white/10 dark:bg-[#111827] dark:text-white sm:flex-none sm:py-1.5"
                 >
                   {urgencyOptions.map((opt) => (
                     <option key={opt}>{opt}</option>
@@ -330,9 +332,9 @@ export default function DiscoverPage() {
         </div>
 
         <div
-          className={`grid gap-6 ${
+          className={`grid gap-3 sm:gap-4 md:gap-6 ${
             viewMode === "grid"
-              ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+              ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
               : "grid-cols-1"
           }`}
         >
