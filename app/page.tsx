@@ -481,7 +481,7 @@ export default function HomePage() {
         </h2>
         <p className="mx-auto mt-3 max-w-lg text-gray-500 dark:text-gray-400">
           Stop waiting in inbox limbo. Connect with operators, investors, and
-          creators who've committed to reply.
+          creators who&apos;ve committed to reply.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
